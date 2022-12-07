@@ -23,7 +23,7 @@
             <tr>
                 <th scope="col">Category ID</th>
                 <th scope="col">Category Name</th>
-                {{-- <th scope="col">Action</th> --}}
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>

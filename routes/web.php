@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemCategoryController;
+use App\Http\Controllers\OfferController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ Route::get('/', function () {
 });
 
 Route::resource('categories', CategoryController::class);
+
 Route::resource('items', ItemController::class);
 
 Route::controller(ItemCategoryController::class)->group(function () {
@@ -28,3 +30,5 @@ Route::controller(ItemCategoryController::class)->group(function () {
     Route::post('/items-categories/store', 'store')->name('items-categories.store');
     Route::post('items-categories/delete_category', 'delete_category')->name('items-categories.delete_category');
 });;
+
+Route::resource('offers', OfferController::class);
