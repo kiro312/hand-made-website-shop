@@ -25,7 +25,6 @@
                         </div>
                         <div class="col-sm">
                             <a  class="btn btn-primary" href="{{ route('categories.show',$category->id)}}"> Show</a>
-
                         </div>
 
                         <div class="col-sm">

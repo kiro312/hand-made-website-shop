@@ -1,8 +1,16 @@
 <h1>Create Category for Item</h1>
+@if ($errors->count() > 0)
+    <p>The following errors have occurred:</p>
 
-<form action="{{route('items-categories.store')}}" method="post">
+    <ul>
+        @foreach ($errors->all() as $message)
+            <li>{{ $message }}</li>
+        @endforeach
+    </ul>
+@endif
+<form action="{{ route('items-categories.store') }}" method="post">
     @csrf
-    <label for= "item_name">Select Item</label>
+    <label for="item_name">Select Item</label>
     <select name="item">
         @foreach ($items as $item)
             <option value="{{ $item->id }}">
@@ -11,7 +19,7 @@
         @endforeach
     </select>
     <br><br>
-    <label for= "item_description">Select Category</label>
+    <label for="item_description">Select Category</label>
     <select name="category">
         @foreach ($categories as $category)
             <option value="{{ $category->id }}">

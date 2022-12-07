@@ -15,6 +15,8 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
+        // $item_2 = Item::find(2);
+        // $itemro = $item_2->categories;
         return view('items.index', compact('items'));
     }
 
@@ -56,7 +58,8 @@ class ItemController extends Controller
     public function show($id)
     {
         $item = Item::find($id);
-        return view('items.show', compact('item'));
+        $item_categories = $item->categories;
+        return view('items.show', compact('item', 'item_categories'));
     }
 
     /**
@@ -67,7 +70,9 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        return view('items.edit', compact('item'));
+        $item_categories = Item::find($item->id)->categories;
+        // $item_categories = $item->categories;
+        return view('items.edit', compact('item', 'item_categories'));
     }
 
     /**
