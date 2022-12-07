@@ -83,7 +83,6 @@ class CategoryController extends Controller
         ]);
 
         $category->update($request->all());
-        $category->save();
         return redirect()->route('categories.index');
     }
 

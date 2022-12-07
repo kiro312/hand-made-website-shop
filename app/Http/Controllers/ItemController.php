@@ -90,7 +90,6 @@ class ItemController extends Controller
         ]);
 
         $item->update($request->all());
-        $item->save();
 
         return redirect()->route('items.index');
     }
