@@ -22,10 +22,9 @@ Route::get('/', function () {
 
 Route::resource('categories', CategoryController::class);
 Route::resource('items', ItemController::class);
-// Route::resource('items-categories', ItemCategoryController::class);
+
 Route::controller(ItemCategoryController::class)->group(function () {
     Route::get('/items-categories/create', 'create')->name('items-categories.create');
     Route::post('/items-categories/store', 'store')->name('items-categories.store');
-    // Route::post('items-categories/delete_category', 'App\Http\Controllers\ItemCategoryController@delete_category')->name('items-categories.delete_category');
     Route::post('items-categories/delete_category', 'delete_category')->name('items-categories.delete_category');
 });;
