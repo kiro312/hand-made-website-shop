@@ -11,4 +11,9 @@ class Offer extends Model
     protected $fillable = [
         'offer_title', 'offer_description', 'offer_percentage'
     ];
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class, 'item_offers');
+    }
 }

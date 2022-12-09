@@ -16,4 +16,9 @@ class Item extends Model
     {
         return $this->belongsToMany(Category::class, 'item_categories');
     }
+
+    public function offers()
+    {
+        return $this->belongsToMany(Offer::class, 'item_offers');
+    }
 }

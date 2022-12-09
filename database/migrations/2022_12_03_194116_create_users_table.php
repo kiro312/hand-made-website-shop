@@ -23,7 +23,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_role_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('user_role_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('user_role_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unique('user_role_id');
         });
     }
 

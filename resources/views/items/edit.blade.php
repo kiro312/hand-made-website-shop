@@ -38,9 +38,42 @@
                         <div class="col-sm">
                             @php
                                 $ids = ['item_id' => $item->id, 'category_id' => $item_category->id];
-                                $id_2 = 2;
                             @endphp
                             <form action="{{ route('items-categories.delete_category', $ids) }}" method="POST">
+                                @csrf
+                                @method('POST')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <br>
+    <h1>Item Offers</h1>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Offers ID</th>
+                <th scope="col">Offer title</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($item_offers as $item_offer)
+                <tr>
+                    <td>{{ $item_offer->id }}</td>
+                    <td>{{ $item_offer->offer_title }}</td>
+                    <td>
+                        <div class="col-sm">
+                            <a class="btn btn-primary" href="{{ route('offers.show', $item_offer->id) }}"> Show</a>
+                        </div>
+                        <div class="col-sm">
+                            @php
+                                $ids = ['item_id' => $item->id, 'offer_id' => $item_offer->id];
+                            @endphp
+                            <form action="{{ route('items-offers.delete_offer', $ids) }}" method="POST">
                                 @csrf
                                 @method('POST')
                                 <button type="submit" class="btn btn-danger">Delete</button>

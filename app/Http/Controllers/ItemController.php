@@ -71,7 +71,8 @@ class ItemController extends Controller
     public function edit(Item $item)
     {
         $item_categories = Item::find($item->id)->categories;
-        return view('items.edit', compact('item', 'item_categories'));
+        $item_offers = Item::find($item->id)->offers;
+        return view('items.edit', compact('item', 'item_categories', 'item_offers'));
     }
 
     /**
