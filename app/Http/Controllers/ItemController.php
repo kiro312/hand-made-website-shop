@@ -15,8 +15,6 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
-        // $item_2 = Item::find(2);
-        // $itemro = $item_2->categories;
         return view('items.index', compact('items'));
     }
 
