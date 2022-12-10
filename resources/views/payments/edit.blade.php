@@ -9,7 +9,8 @@
         <input id="payment_method" type="text" name="payment_method" value="{{ $payment->payment_method }}">
         <br><br>
         <label for="payment_method_description">Offer Description</label>
-        <input id="payment_method_description" type="text" name="payment_method_description" value="{{ $payment->payment_method_description }}">
+        <input id="payment_method_description" type="text" name="payment_method_description"
+            value="{{ $payment->payment_method_description }}">
         <br>
         <button type="submit">Update</button>
     </form>

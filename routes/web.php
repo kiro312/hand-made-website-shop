@@ -6,6 +6,7 @@ use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ItemOfferController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\OrderStatusesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,3 +43,5 @@ Route::controller(ItemOfferController::class)->group(function () {
 });
 
 Route::resource('payments', PaymentController::class);
+
+Route::resource('order-statuses', OrderStatusesController::class);
