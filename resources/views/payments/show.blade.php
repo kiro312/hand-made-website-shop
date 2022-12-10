@@ -12,8 +12,8 @@
         <tbody>
             <tr>
                 <th scope="row">{{ $payment->id }}</th>
-                <td>{{ $payment->offer_title }}</td>
-                <td>{{ $payment->offer_description }}</td>
+                <td>{{ $payment->payment_method }}</td>
+                <td>{{ $payment->payment_method_description }}</td>
             </tr>
         </tbody>
     </table>
