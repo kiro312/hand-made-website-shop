@@ -14,7 +14,7 @@ class ItemOfferController extends Controller
     {
         $items = Item::all();
         $offers = Offer::all();
-        return view('items-offers.create', compact('items', 'offers'));
+        return view('Admin.items-offers.create', compact('items', 'offers'));
     }
 
     public function store(Request $request)

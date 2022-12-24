@@ -1,4 +1,4 @@
-@extends('payments.layout')
+@extends('Admin.payments.layout')
 @section('content')
     <h1>Edit Payment Method</h1>
 

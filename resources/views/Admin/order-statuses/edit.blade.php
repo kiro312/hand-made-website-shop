@@ -1,4 +1,4 @@
-@extends('order-statuses.layout')
+@extends('Admin.order-statuses.layout')
 @section('content')
     <h1>Edit Order Statues</h1>
     <form action="{{ route('order-statuses.update', $order_statuses->id) }}" method="post">

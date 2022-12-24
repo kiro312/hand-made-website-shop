@@ -1,4 +1,4 @@
-@extends('offers.layout')
+@extends('Admin.offers.layout')
 @section('content')
     <h1>Edit offer</h1>
 

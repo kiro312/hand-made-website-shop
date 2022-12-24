@@ -10,12 +10,12 @@ class OrderStatusesController extends Controller
     public function index()
     {
         $order_statuses = OrderStatuses::all();
-        return view('order-statuses.index', compact('order_statuses'));
+        return view('Admin.order-statuses.index', compact('order_statuses'));
     }
 
     public function create()
     {
-        return view('order-statuses.create');
+        return view('Admin.order-statuses.create');
     }
 
     public function store(Request $request)
@@ -27,19 +27,19 @@ class OrderStatusesController extends Controller
 
         OrderStatuses::create($request->all());
 
-        return view('order-statuses.create');
+        return view('Admin.order-statuses.create');
     }
 
     public function show($id)
     {
         $order_statuses = OrderStatuses::find($id);
-        return view('order-statuses.show', compact('order_statuses'));
+        return view('Admin.order-statuses.show', compact('order_statuses'));
     }
 
     public function edit($id)
     {
         $order_statuses = OrderStatuses::find($id);
-        return view('order-statuses.edit', compact('order_statuses'));
+        return view('Admin.order-statuses.edit', compact('order_statuses'));
     }
 
     public function update(Request $request, $id)

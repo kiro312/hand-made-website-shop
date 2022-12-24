@@ -1,4 +1,4 @@
-@extends('offers.layout')
+@extends('Admin.order-statuses.layout')
 
 @section('content')
     <div class="container">
@@ -6,30 +6,32 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Offer Title</th>
-                    <th scope="col">Offer Percentage</th>
+                    <th scope="col">Order Statuses Title</th>
+                    <th scope="col">Order Statuses Description</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($offers as $offer)
+                @foreach ($order_statuses as $order_status)
                     <tr>
-                        <th scope="row">{{ $offer->id }}</th>
-                        <td>{{ $offer->offer_title }}</td>
-                        <td>{{ $offer->offer_percentage }}</td>
+                        <th scope="row">{{ $order_status->id }}</th>
+                        <td>{{ $order_status->order_statuses_title }}</td>
+                        <td>{{ $order_status->order_statuses_description }}</td>
                         <td>
 
                             <div class="row">
                                 <div class="col-sm">
-                                    <a class="btn btn-success" href="{{ route('offers.edit', $offer->id) }}"> Edit </a>
+                                    <a class="btn btn-success" href="{{ route('order-statuses.edit', $order_status->id) }}">
+                                        Edit </a>
 
                                 </div>
                                 <div class="col-sm">
-                                    <a class="btn btn-primary" href="{{ route('offers.show', $offer->id) }}"> Show</a>
+                                    <a class="btn btn-primary" href="{{ route('order-statuses.show', $order_status->id) }}">
+                                        Show</a>
                                 </div>
 
                                 <div class="col-sm">
-                                    <form action="{{ route('offers.destroy', $offer) }}" method="POST">
+                                    <form action="{{ route('order-statuses.destroy', $order_status->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>

@@ -14,7 +14,7 @@ class ItemCategoryController extends Controller
     {
         $items = Item::all();
         $categories = Category::all();
-        return view('items-categories.create', compact('items', 'categories'));
+        return view('Admin.items-categories.create', compact('items', 'categories'));
     }
 
     public function store(Request $request)

@@ -1,4 +1,4 @@
-@extends('items.layout')
+@extends('Admin.items.layout')
 
 @section('content')
     <div class="container">

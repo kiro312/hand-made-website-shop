@@ -1,4 +1,4 @@
-@extends('payments.layout')
+@extends('Admin.offers.layout')
 
 @section('content')
     <div class="container">
@@ -6,30 +6,30 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Payment Title</th>
-                    <th scope="col">Payment Description</th>
+                    <th scope="col">Offer Title</th>
+                    <th scope="col">Offer Percentage</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($payments as $payment)
+                @foreach ($offers as $offer)
                     <tr>
-                        <th scope="row">{{ $payment->id }}</th>
-                        <td>{{ $payment->payment_method }}</td>
-                        <td>{{ $payment->payment_method_description }}</td>
+                        <th scope="row">{{ $offer->id }}</th>
+                        <td>{{ $offer->offer_title }}</td>
+                        <td>{{ $offer->offer_percentage }}</td>
                         <td>
 
                             <div class="row">
                                 <div class="col-sm">
-                                    <a class="btn btn-success" href="{{ route('payments.edit', $payment->id) }}"> Edit </a>
+                                    <a class="btn btn-success" href="{{ route('offers.edit', $offer->id) }}"> Edit </a>
 
                                 </div>
                                 <div class="col-sm">
-                                    <a class="btn btn-primary" href="{{ route('payments.show', $payment->id) }}"> Show</a>
+                                    <a class="btn btn-primary" href="{{ route('offers.show', $offer->id) }}"> Show</a>
                                 </div>
 
                                 <div class="col-sm">
-                                    <form action="{{ route('payments.destroy', $payment) }}" method="POST">
+                                    <form action="{{ route('offers.destroy', $offer) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>

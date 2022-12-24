@@ -15,7 +15,7 @@ class OfferController extends Controller
     public function index()
     {
         $offers = Offer::all();
-        return view('offers.index', compact('offers'));
+        return view('Admin.offers.index', compact('offers'));
     }
 
     /**
@@ -25,7 +25,7 @@ class OfferController extends Controller
      */
     public function create()
     {
-        return view('offers.create');
+        return view('Admin.offers.create');
     }
 
     /**
@@ -43,7 +43,7 @@ class OfferController extends Controller
 
         Offer::create($request->all());
 
-        return view('offers.create');
+        return view('Admin.offers.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class OfferController extends Controller
     public function show($id)
     {
         $offer = Offer::find($id);
-        return view('offers.show', compact('offer'));
+        return view('Admin.offers.show', compact('offer'));
     }
 
     /**
@@ -66,7 +66,7 @@ class OfferController extends Controller
      */
     public function edit(Offer $offer)
     {
-        return view('offers.edit', compact('offer'));
+        return view('Admin.offers.edit', compact('offer'));
     }
 
     /**

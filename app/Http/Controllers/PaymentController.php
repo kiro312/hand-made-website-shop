@@ -10,12 +10,12 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = Payment::all();
-        return view('payments.index', compact('payments'));
+        return view('Admin.payments.index', compact('payments'));
     }
 
     public function create()
     {
-        return view('payments.create');
+        return view('Admin.payments.create');
     }
 
     public function store(Request $request)
@@ -27,18 +27,18 @@ class PaymentController extends Controller
 
         Payment::create($request->all());
 
-        return view('payments.create');
+        return view('Admin.payments.create');
     }
 
     public function show($id)
     {
         $payment = Payment::find($id);
-        return view('payments.show', compact('payment'));
+        return view('Admin.payments.show', compact('payment'));
     }
 
     public function edit(Payment $payment)
     {
-        return view('payments.edit', compact('payment'));
+        return view('Admin.payments.edit', compact('payment'));
     }
 
     public function update(Request $request, Payment $payment)

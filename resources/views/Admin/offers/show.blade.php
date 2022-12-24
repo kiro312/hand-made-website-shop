@@ -1,4 +1,4 @@
-@extends('offers.layout')
+@extends('Admin.offers.layout')
 
 @section('content')
     <table class="table">

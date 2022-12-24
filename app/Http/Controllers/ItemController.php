@@ -16,7 +16,7 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
-        return view('items.index', compact('items'));
+        return view('Admin.items.index', compact('items'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('items.create');
+        return view('Admin.items.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class ItemController extends Controller
 
         Item::create($request->all());
 
-        return view('items.create');
+        return view('Admin.items.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class ItemController extends Controller
     {
         $item = Item::find($id);
         $item_categories = $item->categories;
-        return view('items.show', compact('item', 'item_categories'));
+        return view('Admin.items.show', compact('item', 'item_categories'));
     }
 
     /**
@@ -71,7 +71,7 @@ class ItemController extends Controller
     {
         $item_categories = Item::find($item->id)->categories;
         $item_offers = Item::find($item->id)->offers;
-        return view('items.edit', compact('item', 'item_categories', 'item_offers'));
+        return view('Admin.items.edit', compact('item', 'item_categories', 'item_offers'));
     }
 
     /**
