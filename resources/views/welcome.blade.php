@@ -17,8 +17,8 @@
 </head>
 
 <body>
-    <h1>{{ Auth::user()->shoppingCarts }}</h1>
-    <h1>{{ Auth::user()->orders }}</h1>
+    <h1>Shopping Cart{{ Auth::user()->shoppingCarts }}</h1>
+    <h1>Orders {{ Auth::user()->orders }}</h1>
     @if ($errors->count() > 0)
         <p>The following errors have occurred:</p>
 
@@ -31,9 +31,12 @@
     <div class="grid place-items-center h-screen"
         style="width: 200px; height: 200px; background-color: rgba(139, 211, 148, 0.703)">
         <h1>Item Name</h1>
-        <button onclick="addToCart()">Add</button>
-        <button onclick="removeFromCart()">Remove</button>
-        <button onclick="changeItemQtInCart()">chnage qt</button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onclick="addToCart()">Add</button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onclick="removeFromCart()">Remove</button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onclick="changeItemQtInCart()">chnage qt</button>
     </div>
 
     <form method="POST" action="{{ route('logout') }}">
@@ -46,7 +49,7 @@
     </form>
 
     <div class="grid place-items-center h-screen"
-        style="width: 200px; height: 200px; background-color: rgba(177, 151, 104, 0.703)">
+        style="width: 200px; height: 200px; background-color: rgba(196, 206, 105, 0.703)">
         <h1>Create Order</h1>
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onclick="makeOrder()">makeOrder</button>
