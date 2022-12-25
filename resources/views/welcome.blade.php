@@ -18,6 +18,8 @@
 </head>
 
 <body>
+    <h1>{{Auth::user()->shoppingCarts}}</h1>
+    <h1>{{Auth::user()->orders}}</h1>
     @if ($errors->count() > 0)
         <p>The following errors have occurred:</p>
 
