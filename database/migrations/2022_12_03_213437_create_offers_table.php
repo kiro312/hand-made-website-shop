@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('offer_title');
             $table->longText('offer_description')->nullable();
+            $table->double('offer_percentage');
             $table->timestamps();
         });
     }

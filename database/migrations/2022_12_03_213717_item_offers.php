@@ -20,6 +20,8 @@ return new class extends Migration
             $table->timestamps();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('offer_id')->references('id')->on('offers')->onDelete('cascade');
+
+            $table->unique(['item_id']);
         });
     }
 

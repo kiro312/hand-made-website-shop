@@ -18,12 +18,12 @@ return new class extends Migration
             $table->string('user_first_name');
             $table->string('user_last_name');
             $table->string('user_phone');
-            $table->string('user_email')->unique();
-            $table->string('user_password');
-            $table->unsignedBigInteger('user_role_id')->unsigned();
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->unsignedBigInteger('user_role_id')->unsigned()->default('2');
             $table->timestamps();
 
-            $table->foreign('user_role_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('user_role_id')->references('id')->on('user_roles')->onDelete('cascade');
         });
     }
 

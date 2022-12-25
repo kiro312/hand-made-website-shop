@@ -7,79 +7,57 @@ use Illuminate\Http\Request;
 
 class OrderStatusesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $order_statuses = OrderStatuses::all();
+        return view('Admin.order-statuses.index', compact('order_statuses'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('Admin.order-statuses.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'order_statuses_title' => 'required',
+            'order_statuses_description' => 'required'
+        ]);
+
+        OrderStatuses::create($request->all());
+
+        return view('Admin.order-statuses.create');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\OrderStatuses  $orderStatuses
-     * @return \Illuminate\Http\Response
-     */
-    public function show(OrderStatuses $orderStatuses)
+    public function show($id)
     {
-        //
+        $order_statuses = OrderStatuses::find($id);
+        return view('Admin.order-statuses.show', compact('order_statuses'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\OrderStatuses  $orderStatuses
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(OrderStatuses $orderStatuses)
+    public function edit($id)
     {
-        //
+        $order_statuses = OrderStatuses::find($id);
+        return view('Admin.order-statuses.edit', compact('order_statuses'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OrderStatuses  $orderStatuses
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, OrderStatuses $orderStatuses)
+    public function update(Request $request, $id)
     {
-        //
+        $order_statuses = OrderStatuses::find($id);
+        $request->validate([
+            'order_statuses_title' => 'required',
+            'order_statuses_description' => 'required'
+        ]);
+
+        $order_statuses->update($request->all());
+        return redirect()->route('order-statuses.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\OrderStatuses  $orderStatuses
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(OrderStatuses $orderStatuses)
+    public function destroy($id)
     {
-        //
+        $order_statuses = OrderStatuses::find($id);
+        $order_statuses->delete();
+        return redirect()->route('order-statuses.index');
     }
 }

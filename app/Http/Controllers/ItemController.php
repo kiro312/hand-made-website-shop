@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ItemController extends Controller
 {
@@ -14,7 +15,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::all();
+        return view('Admin.items.index', compact('items'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.items.create');
     }
 
     /**
@@ -35,7 +37,15 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'item_name' => 'required',
+            'item_description' => 'required',
+            'item_price' => 'required | numeric',
+        ]);
+
+        Item::create($request->all());
+
+        return view('Admin.items.create');
     }
 
     /**
@@ -44,9 +54,11 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show($id)
     {
-        //
+        $item = Item::find($id);
+        $item_categories = $item->categories;
+        return view('Admin.items.show', compact('item', 'item_categories'));
     }
 
     /**
@@ -57,7 +69,9 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        $item_categories = Item::find($item->id)->categories;
+        $item_offers = Item::find($item->id)->offers;
+        return view('Admin.items.edit', compact('item', 'item_categories', 'item_offers'));
     }
 
     /**
@@ -69,7 +83,15 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $request->validate([
+            'item_name' => 'required',
+            'item_description' => 'required',
+            'item_price' => 'required | numeric',
+        ]);
+
+        $item->update($request->all());
+
+        return redirect()->route('items.index');
     }
 
     /**
@@ -80,6 +102,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+        return redirect()->route('items.index');
     }
 }

@@ -14,7 +14,8 @@ class OfferController extends Controller
      */
     public function index()
     {
-        //
+        $offers = Offer::all();
+        return view('Admin.offers.index', compact('offers'));
     }
 
     /**
@@ -24,7 +25,7 @@ class OfferController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.offers.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'offer_title' => 'required',
+            'offer_percentage' => 'required |regex:/^\d+(\.\d{1,2})?$/'
+        ]);
+
+        Offer::create($request->all());
+
+        return view('Admin.offers.create');
     }
 
     /**
@@ -44,9 +52,10 @@ class OfferController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function show(Offer $offer)
+    public function show($id)
     {
-        //
+        $offer = Offer::find($id);
+        return view('Admin.offers.show', compact('offer'));
     }
 
     /**
@@ -57,7 +66,7 @@ class OfferController extends Controller
      */
     public function edit(Offer $offer)
     {
-        //
+        return view('Admin.offers.edit', compact('offer'));
     }
 
     /**
@@ -69,7 +78,13 @@ class OfferController extends Controller
      */
     public function update(Request $request, Offer $offer)
     {
-        //
+        $request->validate([
+            'offer_title' => 'required',
+            'offer_percentage' => 'required |regex:/^\d+(\.\d{1,2})?$/'
+        ]);
+
+        $offer->update($request->all());
+        return redirect()->route('offers.index');
     }
 
     /**
@@ -80,6 +95,7 @@ class OfferController extends Controller
      */
     public function destroy(Offer $offer)
     {
-        //
+        $offer->delete();
+        return redirect()->route('offers.index');
     }
 }
