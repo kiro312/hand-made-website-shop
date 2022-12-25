@@ -11,15 +11,14 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
-
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
-    <h1>{{Auth::user()->shoppingCarts}}</h1>
-    <h1>{{Auth::user()->orders}}</h1>
+    <h1>{{ Auth::user()->shoppingCarts }}</h1>
+    <h1>{{ Auth::user()->orders }}</h1>
     @if ($errors->count() > 0)
         <p>The following errors have occurred:</p>
 
@@ -45,6 +44,13 @@
             {{ __('Log Out') }}
         </button>
     </form>
+
+    <div class="grid place-items-center h-screen"
+        style="width: 200px; height: 200px; background-color: rgba(177, 151, 104, 0.703)">
+        <h1>Create Order</h1>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onclick="makeOrder()">makeOrder</button>
+    </div>
 </body>
 <script>
     $.ajaxSetup({
@@ -87,6 +93,19 @@
             data: {
                 "item_id": 1,
                 "item_quantity": '5',
+            },
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    function makeOrder() {
+        jQuery.ajax({
+            url: "{{ route('order.make') }}",
+            type: "POST",
+            data: {
+                "payment_method_id": 1,
             },
             success: function(data) {
                 console.log(data);
