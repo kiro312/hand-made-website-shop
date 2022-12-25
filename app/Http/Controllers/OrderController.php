@@ -20,9 +20,11 @@ class OrderController extends Controller
             $order_id = $this->createOrderID();
 
             $cart_items = ShoppingCart::where(['user_id' => Auth::id()])->get();
-            if (!$cart_items) {
+            if ($cart_items->count() == 0) {
                 return "no items in cart";
             }
+
+            return $cart_items;
 
             // 2 - Copy items from Cart to order_item_details table
             $this->copyItemsFromCartToOrder($order_id, $cart_items);
