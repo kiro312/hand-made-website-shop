@@ -24,8 +24,6 @@ class OrderController extends Controller
                 return "no items in cart";
             }
 
-            return $cart_items;
-
             // 2 - Copy items from Cart to order_item_details table
             $this->copyItemsFromCartToOrder($order_id, $cart_items);
 
