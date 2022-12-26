@@ -21,6 +21,6 @@ class ShoppingCart extends Model
 
     public function items()
     {
-        return $this->belongsTo(Itesm::class);
+        return $this->belongsToMany(Item::class);
     }
 }

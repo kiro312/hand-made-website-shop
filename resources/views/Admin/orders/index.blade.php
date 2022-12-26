@@ -15,7 +15,6 @@
             <tbody>
                 @foreach ($orders as $order)
                     <tr class="align-middle">
-                        {{ $order }}
                         <td scope="row">{{ $order->id }}</td>
                         <td scope="row">{{ $order->order_id }}</td>
                         <td scope="row">{{ $order->payment_method_id }}</td>

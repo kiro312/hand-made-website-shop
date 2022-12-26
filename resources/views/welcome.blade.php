@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <h1>Shopping Cart{{ Auth::user()->shoppingCarts }}</h1>
+    {{-- <h1>Shopping Cart{{ Auth::user()->shoppingCarts }}</h1>
     <h1>Orders {{ Auth::user()->orders }}</h1>
     @if ($errors->count() > 0)
         <p>The following errors have occurred:</p>
@@ -53,7 +53,39 @@
         <h1>Create Order</h1>
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onclick="makeOrder()">makeOrder</button>
+    </div> --}}
+
+    <div class="">
+        <a href="{{ route('login') }}"
+            class="flex items-centerplace-items-center items-center justify-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white  ">
+                Login
+            </h5>
+
+        </a>
     </div>
+
+    <br>
+
+    <div class="">
+        <a href="{{ route('register') }}"
+            class="flex items-centerplace-items-center items-center justify-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white  ">
+                Register
+            </h5>
+
+        </a>
+    </div>
+    <br>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+
+        <button type="submit"
+            class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            {{ __('Log Out') }}
+        </button>
+    </form>
+
 </body>
 <script>
     $.ajaxSetup({

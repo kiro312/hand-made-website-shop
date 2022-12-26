@@ -25,7 +25,7 @@ class Item extends Model
 
     public function shoppingCarts()
     {
-        return $this->hasMany(ShoppingCart::class);
+        return $this->belongsToMany(ShoppingCart::class);
     }
 
     public function orderItemDetails()

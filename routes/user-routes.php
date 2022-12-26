@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MainPageController;
 
 Route::middleware('auth', 'verified')->group(
     function () {
@@ -11,13 +12,14 @@ Route::middleware('auth', 'verified')->group(
             Route::delete('/remove-from-cart', 'RemoveFromCart')->name('cart.remove');
             Route::post('/change-qt-in-cart', 'changeItemQtInCart')->name('cart.changeQt');
         });
-    }
-);
 
-Route::middleware('auth', 'verified')->group(
-    function () {
         Route::controller(OrderController::class)->group(function () {
             Route::post('/make-order', 'makeOrder')->name('order.make');
+        });
+
+        Route::controller(MainPageController::class)->group(function () {
+            Route::get('/main-page', 'index')->name('main.index');
+            Route::get('/cart-page', 'getUserCart')->name('main.cart');
         });
     }
 );
