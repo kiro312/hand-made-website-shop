@@ -94,4 +94,17 @@ class OrderController extends Controller
             return $messages;
         }
     }
+
+    public function getAllWaitingOrdersForAdmin()
+    {
+        $order_statuses_id = OrderStatuses::first()->id;
+        $orders = OrderDetails::where(['order_status_id' => $order_statuses_id])->get();
+        return view('Admin.orders.index', compact('orders'));
+    }
+
+    public function confirmOrder(OrderDetails $order)
+    {
+        $order->order_status_id = 2;
+        $order->save();
+    }
 }
