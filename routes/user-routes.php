@@ -20,6 +20,8 @@ Route::middleware('auth', 'verified')->group(
         Route::controller(MainPageController::class)->group(function () {
             Route::get('/main-page', 'index')->name('main.index');
             Route::get('/cart-page', 'getUserCart')->name('main.cart');
+            Route::get('/orders-page', 'getUserOrders')->name('main.orders');
+
         });
     }
 );

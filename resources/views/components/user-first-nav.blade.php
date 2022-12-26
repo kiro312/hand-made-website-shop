@@ -14,7 +14,7 @@
             <div class="dropdown-content">
                 <a href="">Profile</a>
                 <a href="{{ route('main.cart') }}">Shopping Cart</a>
-                <a href="">My Orders</a>
+                <a href="{{ route('main.orders') }}">My Orders</a>
                 <a href="" onclick="logout()">Logout</a>
             </div>
         </div>

@@ -106,6 +106,6 @@ class OrderController extends Controller
     {
         $order->order_status_id = 2;
         $order->save();
-        return view('Admin.orders.index');
+        return redirect()->route('order.getAllWaitingOrdersForAdmin');
     }
 }

@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\ShoppingCart;
 use App\Models\Payment;
+use App\Models\Order;
+use App\Models\OrderDetails;
+use App\Models\OrderItemDetails;
+use App\Models\OrderStatuses;
 
 class MainPageController extends Controller
 {
@@ -29,5 +33,14 @@ class MainPageController extends Controller
             array_push($items, $item);
         }
         return view('User.Cart.cart', compact('cartItems', 'items', 'payments'));
+    }
+
+    public function getUserOrders()
+    {
+        $order = Order::where(['user_id' => Auth::id()])->orderBy('created_at', 'desc')->first();
+        $orderDetails = OrderDetails::where(['order_id' => $order->id])->get();
+        $payment = Payment::find($orderDetails[0]->payment_method_id);
+        $statues = OrderStatuses::find($orderDetails[0]->order_status_id);
+        return view('User.order.order', compact('orderDetails', 'payment', 'statues'));
     }
 }
