@@ -34,8 +34,10 @@ class AuthenticatedSessionController extends Controller
 
         if ($request->checkAdmin()) {
             return redirect()->intended(RouteServiceProvider::HOME);
+            // return "i'm admin";
         } else {
             return redirect()->intended(RouteServiceProvider::USER_HOME);
+            // return "i'm user";
         }
     }
 

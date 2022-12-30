@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MainPageController;
+use App\Http\Controllers\UserProfileController;
 
-Route::middleware('auth', 'verified')->group(
+Route::middleware('auth', 'verified', 'isUser')->group(
     function () {
         Route::controller(CartController::class)->group(function () {
             Route::post('/add-to-cart', 'addToCart')->name('cart.add');
@@ -21,7 +22,12 @@ Route::middleware('auth', 'verified')->group(
             Route::get('/main-page', 'index')->name('main.index');
             Route::get('/cart-page', 'getUserCart')->name('main.cart');
             Route::get('/orders-page', 'getUserOrders')->name('main.orders');
+        });
 
+        Route::controller(UserProfileController::class)->group(function () {
+            Route::get('/profile', 'edit')->name('user.profile.edit');
+            Route::patch('/profile', 'update')->name('user.profile.update');
+            Route::delete('/profile', 'destroy')->name('user.profile.destroy');
         });
     }
 );

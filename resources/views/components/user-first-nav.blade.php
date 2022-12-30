@@ -12,7 +12,7 @@
         <div class="dropdown">
             <button class="dropbtn w-36">Settings</button>
             <div class="dropdown-content">
-                <a href="">Profile</a>
+                <a href="{{ route('user.profile.edit') }}">Profile</a>
                 <a href="{{ route('main.cart') }}">Shopping Cart</a>
                 <a href="{{ route('main.orders') }}">My Orders</a>
                 <a href="" onclick="logout()">Logout</a>
