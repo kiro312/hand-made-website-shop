@@ -35,12 +35,9 @@ class MainPageController extends Controller
         return view('User.Cart.cart', compact('cartItems', 'items', 'payments'));
     }
 
-    public function getUserOrders()
+    public function getUserPendingOrders()
     {
-        $order = Order::where(['user_id' => Auth::id()])->orderBy('created_at', 'desc')->first();
-        $orderDetails = OrderDetails::where(['order_id' => $order->id])->get();
-        $payment = Payment::find($orderDetails[0]->payment_method_id);
-        $statues = OrderStatuses::find($orderDetails[0]->order_status_id);
-        return view('User.order.order', compact('orderDetails', 'payment', 'statues'));
+        $orders = Order::where(['user_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
+        return view('User.order.order', compact('orders'));
     }
 }

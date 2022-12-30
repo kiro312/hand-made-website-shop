@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Order;
+use App\Models\Payment;
+use App\Models\OrderStatuses;
 
 class OrderDetails extends Model
 {
@@ -14,6 +16,16 @@ class OrderDetails extends Model
 
     public function orders()
     {
-        return $this->belongsTo(Order::class);
+        return $this->hasMany(Order::class);
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class, 'payment_method_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(OrderStatuses::class, 'order_status_id');
     }
 }
