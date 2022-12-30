@@ -18,9 +18,21 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-label for="user_first_name" :value="__('First Name')" />
+            <x-text-input id="user_first_name" name="user_first_name" type="text" class="mt-1 block w-full" :value="old('user_first_name', $user->user_first_name)" required autofocus autocomplete="user_first_name" />
+            <x-input-error class="mt-2" :messages="$errors->get('user_first_name')" />
+        </div>
+
+        <div>
+            <x-input-label for="user_last_name" :value="__('Last Name')" />
+            <x-text-input id="user_last_name" name="user_last_name" type="text" class="mt-1 block w-full" :value="old('user_last_name', $user->user_last_name)" required autofocus autocomplete="user_last_name" />
+            <x-input-error class="mt-2" :messages="$errors->get('user_last_name')" />
+        </div>
+
+        <div>
+            <x-input-label for="user_phone" :value="__('Phone')" />
+            <x-text-input id="user_phone" name="user_phone" type="text" class="mt-1 block w-full" :value="old('user_phone', $user->user_phone)" required autofocus autocomplete="user_phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('user_phone')" />
         </div>
 
         <div>
@@ -48,7 +60,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('Saveeee') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p
