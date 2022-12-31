@@ -95,4 +95,18 @@
             }
         });
     }
+
+    function searchByCategory() {
+        category = document.querySelector('#categories');
+        category_id = category.value;
+
+        jQuery.ajax({
+            url: "{{ route('main.search.category') }}",
+            type: "POST",
+            data: {
+                "categories": category_id,
+            },
+            success: function(data) {}
+        });
+    }
 </script>
