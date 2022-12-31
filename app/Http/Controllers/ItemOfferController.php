@@ -45,6 +45,6 @@ class ItemOfferController extends Controller
         $offer_id = $request->offer_id;
 
         DB::table('item_offers')->where('item_id', '=', $item_id)->where('offer_id', '=', $offer_id)->delete();
-        return redirect('items/' . $item_id . '/edit');
+        return redirect('admin/items/' . $item_id . '/edit');
     }
 }

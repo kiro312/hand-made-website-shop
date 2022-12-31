@@ -22,7 +22,11 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(
 
         Route::resource('/categories', CategoryController::class);
 
+        Route::get('/items/items', function () {
+            return view('Admin.items.items');
+        })->name('items.items');
         Route::resource('/items', ItemController::class);
+
 
         Route::controller(ItemCategoryController::class)->group(function () {
             Route::get('items-categories/create', 'create')->name('items-categories.create');

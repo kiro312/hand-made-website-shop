@@ -1,25 +1,35 @@
-@if ($errors->count() > 0)
-    <p>The following errors have occurred:</p>
+@extends('Admin.items.items')
 
-    <ul>
-        @foreach ($errors->all() as $message)
-            <li>{{ $message }}</li>
-        @endforeach
-    </ul>
-@endif
-<div style="position: absolute;left: 50%; top: 50%; transform: translate(-50%, -50%);">
-    <h1>Create Item</h1>
-    <form action="{{ route('items.store') }}" method="post">
-        @csrf
-        <label for="item_name">Item Name</label>
-        <input id="item_name" type="text" name="item_name">
-        <br><br>
-        <label for="item_description">Item Description</label>
-        <input id="item_description" type="text" name="item_description">
-        <br><br>
-        <label for="item_price">Item Price</label>
-        <input id="item_price" type="number" name="item_price">
-        <br>
-        <button type="submit">Create</button>
-    </form>
-</div>
+@section('item-content')
+    <div class="flex flex-col items-center">
+        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-100 hover:bg-slate-50">
+            <div class="px-6 py-4">
+                <form action="{{ route('items.store') }}" method="post">
+                    @csrf
+                    <div class="">
+                        <x-input-label for="item_name" :value="__('Item Name')" />
+                        <input id="item_name" type="text" name="item_name">
+                        <x-input-error :messages="$errors->get('item_name')" class="mt-2" />
+                    </div>
+                    <br>
+
+                    <div>
+                        <x-input-label for="item_description" :value="__('Item Description')" />
+                        <input id="item_description" type="text" name="item_description">
+                        <x-input-error :messages="$errors->get('item_description')" class="mt-2" />
+                    </div>
+                    <br>
+                    <div>
+                        <x-input-label for="item_price" :value="__('Item Price')" />
+                        <input id="item_price" type="number" name="item_price">
+                        <x-input-error :messages="$errors->get('item_price')" class="mt-2" />
+                    </div>
+                    <br>
+                    <button
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:cursor-pointer"
+                        type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
