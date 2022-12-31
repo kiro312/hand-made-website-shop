@@ -8,8 +8,8 @@
         <form action="{{ route('main.search') }}" method="post">
             @csrf
             <input class="h-11" type="text" placeholder="Search By item" name="key" />
-            <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit"
-                value="Search">
+            <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:cursor-pointer"
+                type="submit" value="Search">
         </form>
     </div>
 
