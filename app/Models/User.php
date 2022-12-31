@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Order;
+use App\Models\ShoppingCart;
 
 class User extends Authenticatable
 {
@@ -16,5 +18,15 @@ class User extends Authenticatable
     public function UserRoles()
     {
         return $this->belongsTo(UserRole::class);
+    }
+
+    public function shoppingCarts()
+    {
+        return $this->hasMany(ShoppingCart::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

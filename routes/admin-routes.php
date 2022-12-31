@@ -10,14 +10,12 @@ use App\Http\Controllers\OrderStatusesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 
-Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
 Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(
     function () {
-
         Route::get('/dashboard', function () {
             return view('Admin.dashboard');
         })->name('dashboard');
@@ -48,6 +46,17 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(
             Route::get('users/', 'index')->name('users.index');
             Route::get('users/{user}', 'show')->name('users.show');
             Route::delete('users/{user}', 'destroy')->name('users.destroy');
+        });
+
+        Route::controller(OrderController::class)->group(function () {
+            Route::get('all-orders/', 'getAllWaitingOrdersForAdmin')->name('order.getAllWaitingOrdersForAdmin');
+            Route::get('confirm-order/{order}', 'confirmOrder')->name('order.confirmOrder');
+        });
+
+        Route::controller(ProfileController::class)->group(function () {
+            Route::get('/profile', 'edit')->name('profile.edit');
+            Route::patch('/profile', 'update')->name('profile.update');
+            Route::delete('/profile', 'destroy')->name('profile.destroy');
         });
     }
 
