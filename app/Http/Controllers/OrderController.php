@@ -34,7 +34,10 @@ class OrderController extends Controller
             // 4 - get order total price
             $total_price =  $this->calcItemsTotalPrice($order_id);
 
-            // 5 - create order details
+
+
+
+            // // 5 - create order details
             OrderDetails::create([
                 'order_id' => $order_id,
                 'payment_method_id' => $request->payment_method_id,
@@ -80,15 +83,23 @@ class OrderController extends Controller
 
     private function calcItemsTotalPrice($order_id)
     {
-        $total = 0;
         try {
+            $total_price = 0;
             $order_items = OrderItemDetails::where(['order_id' => $order_id])->get();
 
             foreach ($order_items as $order_item) {
-                $item_price = Item::find($order_item->item_id)->item_price * $order_item->item_quantity;
-                $total += $item_price;
+                $item_id = $order_item->item_id;
+                $item = Item::find($item_id);
+
+                if (count($item->offers) >= 1) {
+                    $item_price = $item->item_price * $order_item->item_quantity * $item->offers[0]->offer_percentage;
+                } else {
+                    $item_price = $item->item_price * $order_item->item_quantity;
+                }
+
+                $total_price += $item_price;
             }
-            return $total;
+            return $total_price;
         } catch (\Throwable $th) {
             $messages = $th->getMessage();
             return $messages;
@@ -107,5 +118,24 @@ class OrderController extends Controller
         $order->order_status_id = 2;
         $order->save();
         return redirect()->route('order.getAllWaitingOrdersForAdmin');
+    }
+
+    public function deleteOrder(Request $request)
+    {
+        try {
+            $order = Order::find($request->order_id);
+            $order->delete();
+            return "Deleted";
+        } catch (\Throwable $th) {
+            $messages = $th->getMessage();
+            return $messages;
+        }
+    }
+
+    public function showOrder(Order $order, $key)
+    {
+        if ($key == 'pending') {
+            return view('User.order.show', compact('order'));
+        }
     }
 }

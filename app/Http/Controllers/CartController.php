@@ -47,6 +47,7 @@ class CartController extends Controller
                 'item_id' => 'numeric',
                 'item_quantity' => 'numeric'
             ]);
+
             $item_in_cart = ShoppingCart::where(['user_id' => Auth::id(), 'item_id' => $request->item_id])->firstOrFail();
             $item_in_cart->update(['item_quantity' => $request->item_quantity]);
             return "Changed";

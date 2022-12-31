@@ -30,6 +30,6 @@ class Item extends Model
 
     public function orderItemDetails()
     {
-        return $this->hasMany(OrderItemDetails::class);
+        return $this->hasMany(OrderItemDetails::class, 'item_id');
     }
 }

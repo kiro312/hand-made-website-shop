@@ -16,12 +16,15 @@ Route::middleware('auth', 'verified', 'isUser')->group(
 
         Route::controller(OrderController::class)->group(function () {
             Route::post('/make-order', 'makeOrder')->name('order.make');
+            Route::post('/delete-order', 'deleteOrder')->name('order.delete');
+            Route::get('/show-order/{order}/{key}', 'showOrder')->name('order.show');
+            // Route::get('/show-order/{order}', 'showOrder')->name('order.show');
         });
 
         Route::controller(MainPageController::class)->group(function () {
             Route::get('/main-page', 'index')->name('main.index');
             Route::get('/cart-page', 'getUserCart')->name('main.cart');
-            Route::get('/pending-orders-page', 'getUserPendingOrders')->name('main.pending-orders');
+            Route::get('/orders-page/{key}', 'getUserOrders')->name('main.orders');
         });
 
         Route::controller(UserProfileController::class)->group(function () {

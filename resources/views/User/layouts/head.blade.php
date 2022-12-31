@@ -6,4 +6,5 @@
 
 <!-- Fonts -->
 <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-<link href="assets/css/header-style.css" rel="stylesheet">
+{{-- <link href="assets/css/header-style.css" rel="stylesheet"> --}}
+<link href="{{ asset('assets/css/header-style.css') }}" rel="stylesheet">

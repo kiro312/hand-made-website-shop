@@ -22,10 +22,13 @@
                                         Item Description
                                     </th>
                                     <th scope="col" class="text-lg font-medium text-gray-900 px-6 py-4 text-center">
-                                        Item Quantit
+                                        Item Quantity
                                     </th>
                                     <th scope="col" class="text-lg font-medium text-gray-900 px-6 py-4 text-center">
                                         Price
+                                    </th>
+                                    <th scope="col" class="text-lg font-medium text-gray-900 px-6 py-4 text-center">
+                                        Offer Percentage
                                     </th>
                                     <th scope="col" class="text-lg font-medium text-gray-900 px-6 py-4 text-center">
                                         Action
@@ -52,11 +55,29 @@
                                         <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             {{ $item->item_description }}
                                         </td>
-                                        <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td id="item_qty_{{ $item->id }}"
+                                            class="grid grid-cols-1 text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             {{ $cartItems[$i - 1]->item_quantity }}
+                                            <select class="flex justify-center items-center" name="qty"
+                                                id="qty_{{ $item->id }}"
+                                                onchange="changeItemQtInCart({{ $item->id }})">
+                                                @for ($x = 1; $x <= 10; $x++)
+                                                    <option value="{{ $x }}">{{ $x }}</option>
+                                                @endfor
+
+                                            </select>
                                         </td>
+
                                         <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             {{ $item->item_price }}
+                                        </td>
+
+                                        <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            @if (count($item->offers) >= 1)
+                                                {{ $item->offers[0]->offer_percentage * 100 }}%
+                                            @else
+                                                No Offer
+                                            @endif
                                         </td>
                                         <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             <button
@@ -67,12 +88,20 @@
                                             </button>
                                         </td>
                                         <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            {{ $item->item_price * $cartItems[$i - 1]->item_quantity }}
+                                            @if (count($item->offers) >= 1)
+                                                {{ $item->item_price * $cartItems[$i - 1]->item_quantity * $item->offers[0]->offer_percentage }}
+                                            @else
+                                                {{ $item->item_price * $cartItems[$i - 1]->item_quantity }}
+                                            @endif
                                         </td>
                                     </tr>
                                     @php
                                         $i += 1;
-                                        $total += $item->item_price * $cartItems[$i - 2]->item_quantity;
+                                        if (count($item->offers) >= 1) {
+                                            $total += $item->item_price * $cartItems[$i - 2]->item_quantity * $item->offers[0]->offer_percentage;
+                                        } else {
+                                            $total += $item->item_price * $cartItems[$i - 2]->item_quantity;
+                                        }
                                     @endphp
                                 @endforeach
                                 <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
@@ -80,6 +109,9 @@
 
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-lg font-medium text-gray-900">
+
+                                    </td>
+                                    <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
 
                                     </td>
                                     <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">

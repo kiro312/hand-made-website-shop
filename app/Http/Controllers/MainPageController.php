@@ -35,9 +35,13 @@ class MainPageController extends Controller
         return view('User.Cart.cart', compact('cartItems', 'items', 'payments'));
     }
 
-    public function getUserPendingOrders()
+    public function getUserOrders($key)
     {
         $orders = Order::where(['user_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
-        return view('User.order.order', compact('orders'));
+        if ($key == "pending") {
+            return view('User.order.pending-order', compact('orders'));
+        }else{
+            return view('User.order.confirmed-order', compact('orders'));
+        }
     }
 }

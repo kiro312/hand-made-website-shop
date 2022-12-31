@@ -121,13 +121,13 @@
         });
     }
 
-    function changeItemQtInCart() {
+    function changeItemQtInCart(item_id, item_quantity) {
         jQuery.ajax({
             url: "{{ route('cart.changeQt') }}",
             type: "POST",
             data: {
-                "item_id": 1,
-                "item_quantity": '5',
+                "item_id": item_id,
+                "item_quantity": item_quantity,
             },
             success: function(data) {
                 console.log(data);
