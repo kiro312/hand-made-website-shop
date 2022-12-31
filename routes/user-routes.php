@@ -25,6 +25,8 @@ Route::middleware('auth', 'verified', 'isUser')->group(
             Route::get('/main-page', 'index')->name('main.index');
             Route::get('/cart-page', 'getUserCart')->name('main.cart');
             Route::get('/orders-page/{key}', 'getUserOrders')->name('main.orders');
+            Route::post('/search', 'searchBar')->name('main.search');
+            Route::post('/searchCategory', 'searchByCategory')->name('main.search.category');
         });
 
         Route::controller(UserProfileController::class)->group(function () {

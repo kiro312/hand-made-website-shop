@@ -1,6 +1,11 @@
 @extends('User.layouts.master')
 
+@section('first-nav')
+    <x-user-first-nav></x-user-first-nav>
+@endsection
+
 @section('second-nav')
+    <x-user-second-nav :categories="$categories" />
 @endsection
 
 @section('content')
@@ -20,3 +25,5 @@
         @endforeach
     </div>
 @endsection
+
+@extends('User.layouts.js.search')

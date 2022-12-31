@@ -1,6 +1,7 @@
 @extends('User.layouts.master')
 
-@section('second-nav')
+@section('first-nav')
+<x-nav-without-search></x-nav-without-search>
 @endsection
 
 @section('content')

@@ -95,9 +95,4 @@
             }
         });
     }
-
-    function test() {
-        // alert('items_container');
-        return "asd";
-    }
 </script>

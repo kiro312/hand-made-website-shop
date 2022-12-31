@@ -1,12 +1,7 @@
-{{-- 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot> --}}
 @extends('User.layouts.master')
 
-@section('second-nav')
+@section('first-nav')
+    <x-nav-without-search></x-nav-without-search>
 @endsection
 
 @section('content')

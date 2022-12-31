@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\OrderItemDetails;
 use App\Models\OrderStatuses;
+use App\Models\Category;
 
 class MainPageController extends Controller
 {
@@ -18,9 +19,12 @@ class MainPageController extends Controller
     {
         $user = Auth::user();
         $items = Item::all();
+        $categories = Category::all();
+
         $cartItems = ShoppingCart::where(['user_id' => Auth::id()])->get('item_id');
 
-        return view('User.main-page.main-page', compact('user', 'items', 'cartItems'));
+        return view('User.main-page.main-page', compact('user', 'items', 'cartItems', 'categories'));
+        // return view('User.main-page.main-page')->with('items', json_decode($items, true));
     }
 
     public function getUserCart()
@@ -40,8 +44,28 @@ class MainPageController extends Controller
         $orders = Order::where(['user_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
         if ($key == "pending") {
             return view('User.order.pending-order', compact('orders'));
-        }else{
+        } else {
             return view('User.order.confirmed-order', compact('orders'));
         }
+    }
+
+    public function searchBar(Request $request)
+    {
+        $user = Auth::user();
+        $items = Item::where('item_name', 'LIKE', "%{$request->key}%")->orwhere('item_description', 'LIKE', "%{$request->key}%")->get();
+        $cartItems = ShoppingCart::where(['user_id' => Auth::id()])->get('item_id');
+        $categories = Category::all();
+
+        return view('User.main-page.main-page', compact('user', 'items', 'cartItems', 'categories'));
+    }
+
+    public function searchByCategory(Request $request)
+    {
+        $user = Auth::user();
+        $items = Category::find($request->categories)->items()->get();
+        $cartItems = ShoppingCart::where(['user_id' => Auth::id()])->get('item_id');
+        $categories = Category::all();
+
+        return view('User.main-page.main-page', compact('user', 'items', 'cartItems', 'categories'));
     }
 }
