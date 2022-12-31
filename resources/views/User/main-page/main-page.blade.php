@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    <div class="grid grid-cols-4">
+    <div id="items_container" class="grid grid-cols-4">
         @foreach ($items as $item)
             @php
                 $chack = false;

@@ -5,7 +5,7 @@
     </div>
 
     <div class="w-1/3 flex justify-center">
-        <input class="h-11" type="text" placeholder="Search">
+        <input class="h-11" type="text" placeholder="Search" onkeyup="test()">
     </div>
 
     <div class="w-1/3 flex justify-end">
