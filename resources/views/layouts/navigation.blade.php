@@ -31,8 +31,13 @@
                     <x-nav-link :href="route('payments.payments')" :active="request()->routeIs('payments.payments')">
                         {{ __('Payment methods') }}
                     </x-nav-link>
+
                     <x-nav-link :href="route('order-statuses.order-statuses')" :active="request()->routeIs('order-statuses.order-statuses')">
                         {{ __('Order Statuses') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('orders.orders')" :active="request()->routeIs('orders.orders')">
+                        {{ __('Orders') }}
                     </x-nav-link>
                 </div>
             </div>

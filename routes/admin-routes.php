@@ -64,9 +64,14 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(
             Route::delete('users/{user}', 'destroy')->name('users.destroy');
         });
 
+        Route::get('/orders/orders', function () {
+            return view('Admin.orders.orders');
+        })->name('orders.orders');
         Route::controller(OrderController::class)->group(function () {
             Route::get('all-orders/', 'getAllWaitingOrdersForAdmin')->name('order.getAllWaitingOrdersForAdmin');
+            Route::get('all-orders-confirmed/', 'getAllConfirmedOrdersForAdmin')->name('order.getAllConfirmedOrdersForAdmin');
             Route::get('confirm-order/{order}', 'confirmOrder')->name('order.confirmOrder');
+            Route::get('orders/{order}/{key}', 'showOrderAdmin')->name('admin.orders.show');
         });
 
         Route::controller(ProfileController::class)->group(function () {

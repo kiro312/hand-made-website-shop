@@ -60,20 +60,20 @@
                                                     <button type="submit"
                                                         class="bg-red-500 hover:bg-red-700 text-white font-bold p-2 rounded">Delete</button>
                                                 </form>
-                        </div>
-                        </td>
-                        </tr>
-                        @php
-                            $i += 1;
-                        @endphp
-                        @endforeach
 
-                        </tbody>
-                        </table>
+                                            </td>
+                                        </tr>
+                                        @php
+                                            $i += 1;
+                                        @endphp
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection

@@ -32,7 +32,7 @@
                                         $i = 1;
                                     @endphp
                                     @foreach ($orders as $order)
-                                        @if ($order->orderDetails[0]->order_status_id == 1)
+                                        @if ($order->orderDetails[0]->order_status_id == 2)
                                             <tr
                                                 class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 text-center">
                                                 <td
@@ -53,11 +53,8 @@
                                                 </td>
                                                 <td
                                                     class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap flex flex-cols justify-around">
-                                                    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded"
-                                                        href="{{ route('order.confirmOrder', $order->orderDetails[0]->id) }}">
-                                                        Confirm</a>
                                                     <a
-                                                        href="{{ route('admin.orders.show', ['order' => $order->id, 'key' => 'pending']) }}">
+                                                        href="{{ route('admin.orders.show', ['order' => $order->id, 'key' => 'confirmed']) }}">
                                                         <button
                                                             class="bg-green-500 hover:bg-green-700 text-white font-bold p-2 rounded">
                                                             Show Order Details

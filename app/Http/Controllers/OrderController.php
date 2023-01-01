@@ -34,9 +34,6 @@ class OrderController extends Controller
             // 4 - get order total price
             $total_price =  $this->calcItemsTotalPrice($order_id);
 
-
-
-
             // // 5 - create order details
             OrderDetails::create([
                 'order_id' => $order_id,
@@ -108,9 +105,14 @@ class OrderController extends Controller
 
     public function getAllWaitingOrdersForAdmin()
     {
-        $order_statuses_id = OrderStatuses::first()->id;
-        $orders = OrderDetails::where(['order_status_id' => $order_statuses_id])->get();
+        $orders = Order::all();
         return view('Admin.orders.index', compact('orders'));
+    }
+
+    public function getAllConfirmedOrdersForAdmin()
+    {
+        $orders = Order::all();
+        return view('Admin.orders.confirmed_orders', compact('orders'));
     }
 
     public function confirmOrder(OrderDetails $order)
@@ -137,5 +139,12 @@ class OrderController extends Controller
         if ($key == 'pending') {
             return view('User.order.show', compact('order'));
         }
+    }
+
+    public function showOrderAdmin(Order $order, $key)
+    {
+        // if ($key == 'pending') {
+        return view('Admin.orders.show', compact('order'));
+        // }
     }
 }
