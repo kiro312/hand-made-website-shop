@@ -1,20 +1,15 @@
-@extends('Admin.payments.layout')
+@extends('Admin.payments.payments')
 
-@section('content')
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">{{ $payment->id }}</th>
-                <td>{{ $payment->payment_method }}</td>
-                <td>{{ $payment->payment_method_description }}</td>
-            </tr>
-        </tbody>
-    </table>
+@section('payment-content')
+    <div class="flex justify-center">
+        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-100 hover:bg-slate-50">
+            <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">ID: {{ $payment->id }}</div>
+                <div class="font-bold text-xl mb-2">Name: {{ $payment->payment_method }}</div>
+                <p class="text-gray-700 text-base">
+                    Description: {{ $payment->payment_method_description }}
+                </p>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -57,8 +57,7 @@ class ItemController extends Controller
     public function show($id)
     {
         $item = Item::find($id);
-        $item_categories = $item->categories;
-        return view('Admin.items.show', compact('item', 'item_categories'));
+        return view('Admin.items.show', compact('item'));
     }
 
     /**

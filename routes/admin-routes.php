@@ -20,9 +20,16 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(
             return view('Admin.dashboard');
         })->name('dashboard');
 
+        Route::get('/categories/categories', function () {
+            return view('Admin.categories.category');
+        })->name('categories.categories');
         Route::resource('/categories', CategoryController::class);
 
+        Route::get('/items/items', function () {
+            return view('Admin.items.items');
+        })->name('items.items');
         Route::resource('/items', ItemController::class);
+
 
         Route::controller(ItemCategoryController::class)->group(function () {
             Route::get('items-categories/create', 'create')->name('items-categories.create');
@@ -30,6 +37,9 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(
             Route::post('items-categories/delete_category', 'delete_category')->name('items-categories.delete_category');
         });
 
+        Route::get('/offers/offers', function () {
+            return view('Admin.offers.offers');
+        })->name('offers.offers');
         Route::resource('offers', OfferController::class);
 
         Route::controller(ItemOfferController::class)->group(function () {
@@ -38,19 +48,33 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(
             Route::post('items-offers/delete_offer', 'delete_offer')->name('items-offers.delete_offer');
         });
 
+        Route::get('/payments/payments', function () {
+            return view('Admin.payments.payments');
+        })->name('payments.payments');
         Route::resource('payments', PaymentController::class);
 
+        Route::get('/order-statuses/order-statuses', function () {
+            return view('Admin.order-statuses.order_statuses');
+        })->name('order-statuses.order-statuses');
         Route::resource('order-statuses', OrderStatusesController::class);
 
+        Route::get('/users/users', function () {
+            return view('Admin.users.users');
+        })->name('users.users');
         Route::controller(UserController::class)->group(function () {
             Route::get('users/', 'index')->name('users.index');
             Route::get('users/{user}', 'show')->name('users.show');
             Route::delete('users/{user}', 'destroy')->name('users.destroy');
         });
 
+        Route::get('/orders/orders', function () {
+            return view('Admin.orders.orders');
+        })->name('orders.orders');
         Route::controller(OrderController::class)->group(function () {
             Route::get('all-orders/', 'getAllWaitingOrdersForAdmin')->name('order.getAllWaitingOrdersForAdmin');
+            Route::get('all-orders-confirmed/', 'getAllConfirmedOrdersForAdmin')->name('order.getAllConfirmedOrdersForAdmin');
             Route::get('confirm-order/{order}', 'confirmOrder')->name('order.confirmOrder');
+            Route::get('orders/{order}/{key}', 'showOrderAdmin')->name('admin.orders.show');
         });
 
         Route::controller(ProfileController::class)->group(function () {

@@ -45,6 +45,6 @@ class ItemCategoryController extends Controller
         $category_id = $request->category_id;
 
         DB::table('item_categories')->where('item_id', '=', $item_id)->where('category_id', '=', $category_id)->delete();
-        return redirect('items/' . $item_id . '/edit');
+        return redirect('admin/items/' . $item_id . '/edit');
     }
 }

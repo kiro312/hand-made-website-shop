@@ -1,87 +1,109 @@
-@extends('Admin.items.layout')
-@section('content')
-    <h1>Edit Item</h1>
+@extends('Admin.items.items')
 
-    <form action="{{ route('items.update', $item->id) }}" method="post">
-        @csrf
-        @method('put')
-        <label for="item_name">Item Name</label>
-        <input id="item_name" type="text" name="item_name" value="{{ $item->item_name }}">
-        <br><br>
-        <label for="item_description">Item Description</label>
-        <input id="item_description" type="text" name="item_description" value="{{ $item->item_description }}">
-        <br><br>
-        <label for="item_price">Item Price</label>
-        <input id="item_price" type="number" name="item_price" value="{{ $item->item_price }}">
-        <br>
-        <button type="submit">Update</button>
-    </form>
+@section('item-content')
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900">
+            <div class="grid grid-rows-3 gap-2 ">
+                <div class="flex justify-center">
+                    <div class="px-6 py-4 max-w-sm rounded overflow-hidden shadow-lg bg-slate-100 hover:bg-slate-50">
+                        <form action="{{ route('items.update', $item->id) }}" method="post">
+                            @csrf
+                            @method('put')
+                            <div>
+                                <x-input-label for="item_name" :value="__('Item Name')" />
+                                <input id="item_name" type="text" name="item_name" value="{{ $item->item_name }}">
+                                <x-input-error :messages="$errors->get('item_name')" class="mt-2" />
+                            </div>
+                            <br>
+                            <div>
+                                <x-input-label for="item_description" :value="__('Item Description')" />
+                                <input id="item_description" type="text" name="item_description"
+                                    value="{{ $item->item_description }}">
+                                <x-input-error :messages="$errors->get('item_description')" class="mt-2" />
+                            </div>
+                            <br>
+                            <div>
+                                <x-input-label for="item_price" :value="__('Item Price')" />
+                                <input id="item_price" type="number" name="item_price" value="{{ $item->item_price }}">
+                                <x-input-error :messages="$errors->get('item_price')" class="mt-2" />
+                            </div>
+                            <br>
+                            <button
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:cursor-pointer"
+                                type="submit">Update</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="flex justify-around items-center">
+                    @foreach ($item->categories as $category)
+                        <div class="">
+                            <div
+                                class="px-6 py-4 max-w-sm rounded overflow-hidden shadow-lg bg-slate-100 hover:bg-slate-50">
+                                <div class="flex flex-col ">
+                                    <div class="my-2 font-bold text-xl mb-2">ID: {{ $category->id }}</div>
+                                    <div class="my-2 font-bold text-xl mb-2">Name: {{ $category->category_name }}</div>
+                                    <p class="my-2 text-gray-700 text-base">
+                                        Description: {{ $category->category_description }}
+                                    </p>
+                                    <p class="my-2 text-gray-700 text-base">
+                                        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:cursor-pointer"
+                                            href="{{ route('categories.show', $category->id) }}">
+                                            Show</a>
+                                    </p>
+                                    <p class="my-2 text-gray-700 text-base">
+                                        @php
+                                            $ids = ['item_id' => $item->id, 'category_id' => $category->id];
+                                        @endphp
+                                    <form action="{{ route('items-categories.delete_category', $ids) }}" method="POST">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit"
+                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hover:cursor-pointer">Delete</button>
+                                    </form>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
 
-    <h1>Item Category</h1>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Category ID</th>
-                <th scope="col">Category Name</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($item_categories as $item_category)
-                <tr>
-                    <td>{{ $item_category->id }}</td>
-                    <td>{{ $item_category->category_name }}</td>
-                    <td>
-                        <div class="col-sm">
-                            <a class="btn btn-primary" href="{{ route('categories.show', $item_category->id) }}"> Show</a>
+                <div class="flex justify-around items-center">
+                    @foreach ($item->offers as $offer)
+                        <div>
+                            <div
+                                class="px-6 py-4 max-w-sm rounded overflow-hidden shadow-lg bg-slate-100 hover:bg-slate-50">
+                                <div class="flex flex-col ">
+                                    <div class="my-2 font-bold text-xl mb-2">ID: {{ $offer->id }}</div>
+                                    <div class="my-2 font-bold text-xl mb-2">Name: {{ $offer->offer_title }}</div>
+                                    <p class="my-2 text-gray-700 text-base">
+                                        Description: {{ $offer->offer_description }}
+                                    </p>
+                                    <p class="my-2 text-gray-700 text-base">
+                                        Percentage: {{ $offer->offer_percentage }}
+                                    </p>
+                                    <p class="my-2 text-gray-700 text-base">
+                                        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:cursor-pointer"
+                                            href="{{ route('offers.show', $offer->id) }}">
+                                            Show</a>
+                                    </p>
+                                    <p class="my-2 text-gray-700 text-base">
+                                        @php
+                                            $ids = ['item_id' => $item->id, 'offer_id' => $offer->id];
+                                        @endphp
+                                    <form action="{{ route('items-offers.delete_offer', $ids) }}" method="POST">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit"
+                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hover:cursor-pointer">Delete</button>
+                                    </form>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm">
-                            @php
-                                $ids = ['item_id' => $item->id, 'category_id' => $item_category->id];
-                            @endphp
-                            <form action="{{ route('items-categories.delete_category', $ids) }}" method="POST">
-                                @csrf
-                                @method('POST')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <br>
-    <h1>Item Offers</h1>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Offers ID</th>
-                <th scope="col">Offer title</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($item_offers as $item_offer)
-                <tr>
-                    <td>{{ $item_offer->id }}</td>
-                    <td>{{ $item_offer->offer_title }}</td>
-                    <td>
-                        <div class="col-sm">
-                            <a class="btn btn-primary" href="{{ route('offers.show', $item_offer->id) }}"> Show</a>
-                        </div>
-                        <div class="col-sm">
-                            @php
-                                $ids = ['item_id' => $item->id, 'offer_id' => $item_offer->id];
-                            @endphp
-                            <form action="{{ route('items-offers.delete_offer', $ids) }}" method="POST">
-                                @csrf
-                                @method('POST')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+                    @endforeach
+                </div>
+
+            </div>
+        </div>
+    </div>
 @endsection
