@@ -61,7 +61,6 @@
                                             $i += 1;
                                         @endphp
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>
