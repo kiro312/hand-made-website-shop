@@ -45,18 +45,15 @@
                                             </td>
                                             <td
                                                 class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap flex flex-cols justify-between">
-                                                {{-- <div class=""> --}}
+
                                                 <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded"
                                                     href="{{ route('items.edit', $item->id) }}"> Edit
                                                 </a>
-                                                {{-- </div> --}}
-                                                {{-- <div class=""> --}}
+
                                                 <a class="bg-green-500 hover:bg-green-700 text-white font-bold p-2 rounded"
                                                     href="{{ route('items.show', $item->id) }}">
                                                     Show</a>
-                                                {{-- </div> --}}
 
-                                                {{-- <div class=""> --}}
                                                 <form action="{{ route('items.destroy', $item) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')

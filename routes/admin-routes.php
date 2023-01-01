@@ -20,6 +20,9 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(
             return view('Admin.dashboard');
         })->name('dashboard');
 
+        Route::get('/categories/categories', function () {
+            return view('Admin.categories.category');
+        })->name('categories.categories');
         Route::resource('/categories', CategoryController::class);
 
         Route::get('/items/items', function () {
