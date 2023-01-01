@@ -53,6 +53,9 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(
         })->name('payments.payments');
         Route::resource('payments', PaymentController::class);
 
+        Route::get('/order-statuses/order-statuses', function () {
+            return view('Admin.order-statuses.order_statuses');
+        })->name('order-statuses.order-statuses');
         Route::resource('order-statuses', OrderStatusesController::class);
 
         Route::controller(UserController::class)->group(function () {
