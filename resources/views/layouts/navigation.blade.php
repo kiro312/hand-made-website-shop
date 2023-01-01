@@ -27,6 +27,10 @@
                     <x-nav-link :href="route('offers.offers')" :active="request()->routeIs('offers.offers')">
                         {{ __('Offers') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('payments.payments')" :active="request()->routeIs('payments.payments')">
+                        {{ __('Payment methods') }}
+                    </x-nav-link>
                 </div>
             </div>
 

@@ -48,6 +48,9 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(
             Route::post('items-offers/delete_offer', 'delete_offer')->name('items-offers.delete_offer');
         });
 
+        Route::get('/payments/payments', function () {
+            return view('Admin.payments.payments');
+        })->name('payments.payments');
         Route::resource('payments', PaymentController::class);
 
         Route::resource('order-statuses', OrderStatusesController::class);
