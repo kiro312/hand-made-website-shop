@@ -12,9 +12,13 @@
                 {{ __('Create') }}
             </x-nav-link>
 
-            {{-- <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.index')">
+            <x-nav-link :href="route('items-categories.create')" :active="request()->routeIs('items-categories.create')">
                 {{ __('Add Category to item') }}
-            </x-nav-link> --}}
+            </x-nav-link>
+
+            <x-nav-link :href="route('items-offers.create')" :active="request()->routeIs('items-offers.create')">
+                {{ __('Add Offer to item') }}
+            </x-nav-link>
         </div>
     </x-slot>
 
