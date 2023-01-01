@@ -23,4 +23,7 @@
 #### run
 
 > npm run dev
+
+#### and in another terminal
+
 > php artisan migrate
