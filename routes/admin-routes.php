@@ -37,6 +37,9 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(
             Route::post('items-categories/delete_category', 'delete_category')->name('items-categories.delete_category');
         });
 
+        Route::get('/offers/offers', function () {
+            return view('Admin.offers.offers');
+        })->name('offers.offers');
         Route::resource('offers', OfferController::class);
 
         Route::controller(ItemOfferController::class)->group(function () {
