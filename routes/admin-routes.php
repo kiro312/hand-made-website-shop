@@ -58,6 +58,9 @@ Route::prefix('admin')->middleware('auth', 'verified', 'isAdmin')->group(
         })->name('order-statuses.order-statuses');
         Route::resource('order-statuses', OrderStatusesController::class);
 
+        Route::get('/users/users', function () {
+            return view('Admin.users.users');
+        })->name('users.users');
         Route::controller(UserController::class)->group(function () {
             Route::get('users/', 'index')->name('users.index');
             Route::get('users/{user}', 'show')->name('users.show');

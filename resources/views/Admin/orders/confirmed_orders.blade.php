@@ -14,7 +14,11 @@
                                             #
                                         </th>
                                         <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                                            ID
+                                            Order ID
+                                        </th>
+
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                            User ID
                                         </th>
                                         <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                                             User Name
@@ -42,6 +46,10 @@
                                                 <td
                                                     class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
                                                     {{ $order->id }}
+                                                </td>
+                                                <td
+                                                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                                                    {{ $order->user->id }}
                                                 </td>
                                                 <td
                                                     class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
